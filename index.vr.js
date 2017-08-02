@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {AppRegistry, View, Text, StyleSheet, AsyncStorage} from 'react-vr';
+import {AppRegistry, View, Text, StyleSheet, AsyncStorage, Scene, Model, asset, Pano , SpotLight} from 'react-vr';
 
 import Shape, { shapes } from './vr/components/Shape';
 
@@ -10,7 +10,7 @@ class ShapeGame extends Component{
 
     this.state= {
       gameShapes: [1, 1, 1, 1],
-      score:0,
+      score: 0,
       specialIndex: 0
     }
   }
@@ -47,7 +47,7 @@ class ShapeGame extends Component{
     }
 
     let newGameShapes = [];
-    for (let i=0; i<this.state.gameShapes.length; i++) {
+    for (let i=0; i < this.state.gameShapes.length; i++) {
       newGameShapes[i] = baseShapeId;
     }
 
@@ -62,6 +62,11 @@ class ShapeGame extends Component{
   render() {
     return(
       <View style={styles.game}>
+        <Scene style={{transform: [{translate: [0, 0, 0]}, {rotateY: 0}]}} />
+        <Pano source={asset('eso0932a.jpg')}/>
+
+      <SpotLight color = "rgba(232, 227, 153, 0.8)" intensity={1.5} angle={190} style={{transform: [{translate: [ 0, 0, 0]}]}} />
+
         <Text style={styles.text}>Find the Odd Shape!</Text>
         <Text style={styles.text}>{this.state.score}</Text>
         {
